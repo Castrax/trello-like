@@ -1,0 +1,19 @@
+<h1>Todos</h1>
+
+<div class="container">
+  <div class="row">
+    <% @lists.each do |list| %>
+      <div class="col list-<%= list.id %>">
+        <h3><%= list.name.capitalize %></h3>
+        <% @todos.where(list_id: list.id).each do |todo| %>
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title"><%= todo.title %></h5>
+            <p class="card-text"><%= todo.description %></p>
+          </div>
+        </div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>
