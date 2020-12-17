@@ -3,16 +3,14 @@
 <div class="container">
   <div class="row">
     <% @lists.each do |list| %>
-      <div class="col list-<%= list.id %>">
+      <div class="col" data-controller="todos">
         <h3><%= list.name.capitalize %></h3>
-        <% @todos.where(list_id: list.id).each do |todo| %>
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title"><%= todo.title %></h5>
-            <p class="card-text"><%= todo.description %></p>
-          </div>
+        <div class="<%= list.id %>" data-todos-target="todoList" data-controller="drag" data-drag-url="todos/:id/move">
+          <% list.todos.order(position: :asc).each do |todo| %>
+            <%= render partial: 'todos/show', locals: { todo: todo }  %>
+          <% end %>
         </div>
-        <% end %>
+       <%= render partial: 'todos/form', locals: { list_id: list.id } %>
       </div>
     <% end %>
   </div>
