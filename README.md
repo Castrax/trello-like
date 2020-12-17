@@ -12,7 +12,7 @@ La dernière méthode est une méthode Ruby .select, à laquelle on applique un 
 
 La méthode la plus optimisée entre .where et .select est .where, car c'est une méthode Active Record > elle convertit l'argument de la méthode en language SQL, qui est le language le plus optimisé et le plus performant pour les interactions avec les bases de données. La méthode .select sera beaucoup plus lente, car elle récupère tout depuis la base de données, convertit tous les enregistrements en objets Ruby un par un, et exécute le block sur chacun d'entre eux.
 
-Enfin, entre les deux premières, c'est la toute première méthode qui est la plus optimisée, car telle que la deuxième est écrite, elle est vulnérable aux injections SQL. Voici une meilleure façon d'écrire la deuxième méthode : User.where("first_name = ? and last_name = ?", 'Jérémy', 'Kénigsman').
+Enfin, entre les deux premières, c'est la toute première méthode qui est la plus optimisée, car telle que la deuxième est écrite, elle est vulnérable aux injections SQL. Voici une meilleure façon d'écrire la deuxième méthode : User.where("first_name = ? and last_name = ?", 'Bob', 'Dylan').
 
 ## Question 2
 
