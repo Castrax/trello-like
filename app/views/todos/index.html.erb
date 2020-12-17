@@ -1,16 +1,23 @@
-<h1>Todos</h1>
-
-<div class="container">
+<div class="container bg-light mt-4 rounded px-5 py-4">
   <div class="row">
     <% @lists.each do |list| %>
       <div class="col" data-controller="todos">
-        <h3><%= list.name.capitalize %></h3>
+        <h3 class="todo-title mb-3">
+          <% if list.name == 'to do' %>
+            📝
+          <% elsif list.name == 'doing' %>
+            📌
+          <% else %>
+            ✅
+          <% end %>
+          <%= list.name.capitalize %>
+        </h3>
         <div class="<%= list.id %>" data-todos-target="todoList" data-controller="drag" data-drag-url="todos/:id/move">
           <% list.todos.order(position: :asc).each do |todo| %>
             <%= render partial: 'todos/show', locals: { todo: todo }  %>
           <% end %>
         </div>
-       <%= render partial: 'todos/form', locals: { list_id: list.id } %>
+       <%= render partial: 'todos/form', locals: { list: list, list_id: list.id, position: list.todos.count + 1 } %>
       </div>
     <% end %>
   </div>

@@ -1,22 +1,21 @@
-<%= form_with(model: Todo.new(list_id: list_id), url: todos_path(@todo), data: { action: "ajax:success->todos#createSuccess" }) do |form| %>
-  <%= form.hidden_field :list_id %>
+<div class="container container-form px-5 py-4">
+  <h3 class="new-todo">Add a <%= list.name %> todo</h3>
+  <%= form_with(model: Todo.new(list_id: list_id, position: position), url: todos_path(@todo), data: { action: "ajax:success->todos#createSuccess" }) do |form| %>
+    <%= form.hidden_field :list_id %>
+    <%= form.hidden_field :position %>
 
-  <div class="form-group">
-    <%= form.label :title %>
-    <%= form.text_field :title, data: { target: "todos.todoTitle "}, class: 'form-control' %>
-  </div>
+    <div class="form-floating mb-3">
+      <%= form.text_field :title, data: { target: "todos.todoTitle"}, class: 'form-control', id: 'floatingInput' %>
+      <%= form.label :floatingInput, 'Title' %>
+    </div>
 
-  <div class="form-group">
-    <%= form.label :description %>
-    <%= form.text_field :description, data: { target: "todos.todoDescription "}, class: 'form-control' %>
-  </div>
+    <div class="form-floating mb-3">
+      <%= form.text_field :description, data: { target: "todos.todoDescription "}, class: 'form-control', id: 'floatingInput' %>
+      <%= form.label :floatingInput, 'Description' %>
+    </div>
 
-  <div class="form-group">
-    <%= form.label :position %>
-    <%= form.number_field :position, data: { target: "todos.todoPosition "}, class: 'form-control' %>
-  </div>
-
-  <div class="form-group">
-    <%= form.submit class: 'btn btn-primary' %>
-  </div>
-<% end %>
+    <div class="form-group">
+      <%= form.submit class: 'btn btn-primary' %>
+    </div>
+  <% end %>
+</div>
