@@ -1,0 +1,29 @@
+.todo-title {
+  font-size: 1.3rem;
+}
+
+.container-form {
+  background-color: $light-blue;
+}
+
+.new-todo {
+  font-size: 1rem;
+}
+
+.card {
+  cursor: grab;
+}
+
+.bi-grey {
+  color: grey;
+}
+
+.dropdown-menu {
+  margin: 0;
+}
+
+@media (min-width: 1200px) {
+  .container, .container-sm, .container-md, .container-lg, .container-xl {
+      max-width: 1350px !important;
+  }
+}

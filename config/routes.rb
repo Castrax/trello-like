@@ -1,9 +1,10 @@
 Rails.application.routes.draw do
-  resources :todos, only: [:index, :create, :new] do
+  root 'pages#home'
+  resources :todos do
     member do
       patch :move
     end
   end
-  root 'todos#index'
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  devise_for :users
+  get '/user' => "todos#index", :as => :user_root
 end

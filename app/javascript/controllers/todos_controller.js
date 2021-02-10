@@ -1,4 +1,4 @@
-import { Controller } from "stimulus"
+import { Controller } from "stimulus";
 
 export default class extends Controller {
   static targets = ['todoList', 'todoTitle', 'todoDescription', 'todoPosition']
@@ -10,5 +10,6 @@ export default class extends Controller {
     this.todoListTarget.innerHTML += xhr.response
     this.todoTitleTarget.value = ''
     this.todoDescriptionTarget.value = ''
+    const list_id = this.todoListTarget.className;
   }
 }

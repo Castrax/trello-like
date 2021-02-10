@@ -1,8 +1,17 @@
-<div id="shared" data-id="<%= todo.id %>">
-  <div class="card mb-2" data-id="<%= todo.id %>">
-    <div class="card-body">
+<div id="shared" class="card mb-2" data-id="<%= todo.id %>">
+  <div class="card-body">
+    <div class="top-card d-flex justify-content-between">
       <h5 class="card-title"><%= todo.title %></h5>
-      <p class="card-text"><%= todo.description %></p>
+      <div class="dropdown">
+        <div class="three-dots-link" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+          <%= icon("three-dots-vertical", class: "bi-grey") %>
+        </div>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="margin: 0;">
+          <li><%= link_to 'Edit', edit_todo_path(todo), data: { 'bs-toggle' => "modal", 'bs-target' => "#editModal#{todo.id}" }, class: 'dropdown-item' %></li>
+          <li><%= link_to 'Delete', todo_path(todo), method: :delete, remote: true, data: { confirm: "Are you sure?" }, class: 'dropdown-item' %></li>
+        </ul>
+      </div>
     </div>
+    <p class="card-text"><%= todo.description %></p>
   </div>
 </div>
